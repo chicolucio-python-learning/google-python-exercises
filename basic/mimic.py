@@ -1,4 +1,4 @@
-#!/usr/bin/python -tt
+#!/usr/bin/python3 -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -43,29 +43,66 @@ columns, so the output looks better.
 
 import random
 import sys
+import string
+import textwrap
 
 
 def mimic_dict(filename):
-  """Returns mimic dict mapping each word to list of words which follow it."""
-  # +++your code here+++
-  return
+    """Returns mimic dict mapping each word to list of words which follow it."""
+
+    with open(filename) as file:
+        words = [word.strip(string.punctuation)
+                 for word in file.read().split()]
+    d = {}
+
+    for index, word in enumerate(words):
+        if index == len(words) - 1:
+            d[''] = ['']
+            continue
+
+        if word not in d.keys():
+            d[word] = []
+        d[word].append(words[index+1])
+
+    return d
 
 
 def print_mimic(mimic_dict, word):
-  """Given mimic dict and start word, prints 200 random words."""
-  # +++your code here+++
-  return
+    """Given mimic dict and start word, prints 200 random words."""
+    text = ''
+
+    for i in range(200):
+        if word not in mimic_dict.keys():
+            text += word.capitalize()
+
+        word = random.choice(
+            mimic_dict[random.choice(list(mimic_dict.keys()))])
+
+        if len(text) == 0:
+            text += word.capitalize()
+        elif len(word) == 0:
+            continue
+        elif word[0].isupper():
+            text += random.choice('.?!') + ' ' + word
+        else:
+            text += ' ' + word
+
+    text += random.choice('.?!')
+
+    print("\n".join(textwrap.wrap(text, 70)))
+
+    return text
 
 
 # Provided main(), calls mimic_dict() and mimic()
 def main():
-  if len(sys.argv) != 2:
-    print('usage: ./mimic.py file-to-read')
-    sys.exit(1)
+    if len(sys.argv) != 2:
+        print('usage: ./mimic.py file-to-read')
+        sys.exit(1)
 
-  dict = mimic_dict(sys.argv[1])
-  print_mimic(dict, '')
+    dict = mimic_dict(sys.argv[1])
+    print_mimic(dict, '')
 
 
 if __name__ == '__main__':
-  main()
+    main()
