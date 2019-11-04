@@ -1,0 +1,19 @@
+# Google Python Exercises
+
+Suggested order to resolve:
+
+.
+├── basic
+│   ├── string1.py
+│   ├── list1.py
+│   ├── string2.py
+│   ├── list2.py
+│   ├── mimic.py
+│   └── wordcount.py
+├── babynames
+│   └── babynames.py
+├── logpuzzle
+│   ├── logpuzzle.py
+├── copyspecial
+│   ├── copyspecial.py
+
