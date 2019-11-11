@@ -4,11 +4,11 @@ Suggested order to resolve:
 
 .
 ├── basic
-│   ├── string1.py
-│   ├── list1.py
-│   ├── string2.py
-│   ├── list2.py
-│   ├── mimic.py
+│   ├── string1.py          DONE
+│   ├── list1.py            DONE
+│   ├── string2.py          DONE
+│   ├── list2.py            DONE
+│   ├── mimic.py            DONE
 │   └── wordcount.py
 ├── babynames
 │   └── babynames.py
